@@ -3,7 +3,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "jest"
   },
   "jest": {
     "moduleFileExtensions": [
