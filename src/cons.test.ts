@@ -1,4 +1,4 @@
-import { cons, car, cdr } from './cons';
+import { cons, car, cdr, isAtom } from './cons';
 
 test('pairs', () => {
   const p1 = cons(1, 2);
@@ -14,4 +14,10 @@ test('pairs', () => {
   expect(car(cdr(p3))).toEqual(4);
   expect(car(cdr(cdr(p3)))).toEqual(6);
   expect(cdr(cdr(cdr(p3)))).toEqual(null);
+});
+
+test('isAtom', () => {
+  expect(isAtom('atom')).toEqual(true);
+  expect(isAtom(cons(1, 2))).toEqual(false);
+  expect(isAtom([])).toEqual(false);
 });
