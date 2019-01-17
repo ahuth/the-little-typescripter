@@ -1,6 +1,13 @@
-import { cons, car, cdr, isAtom, isEmpty } from './cons';
+import {
+  cons,
+  car,
+  cdr,
+  isAtom,
+  isEmpty,
+  Cons,
+} from './cons';
 
-type List = [any, any];
+type List = Cons<any, any>;
 
 export const getHead = car;
 export const getTail = cdr;

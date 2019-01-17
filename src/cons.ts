@@ -1,12 +1,14 @@
-export function cons<A, B>(a: A, b: B): [A, B] {
+export type Cons<A, B> = [A, B];
+
+export function cons<A, B>(a: A, b: B): Cons<A, B> {
   return [a, b];
 }
 
-export function car<A>(p: [A, any]): A {
+export function car<A>(p: Cons<A, any>): A {
   return p[0];
 }
 
-export function cdr<B>(p: [any, B]): B {
+export function cdr<B>(p: Cons<any, B>): B {
   return p[1];
 }
 
