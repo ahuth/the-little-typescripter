@@ -3,7 +3,6 @@ import {
   car,
   cdr,
   isAtom,
-  isEmpty,
   Cons,
 } from './cons';
 
@@ -26,14 +25,18 @@ export function list(...items: Array<any>) {
   return items.reduceRight((acc, item) => cons(item, acc), []);
 }
 
+export function isEmpty(x: List): x is EmptyList {
+  return Array.isArray(x) && x.length === 0;
+}
+
 export function getHead(x: List): any {
   if (isEmpty(x)) { return undefined; }
-  return car(x as FullList);
+  return car(x);
 }
 
 export function getTail(x: List): List {
   if (isEmpty(x)) { return []; }
-  return cdr(x as FullList);
+  return cdr(x);
 }
 
 export function toString(l: List, acc = '('): string {

@@ -13,13 +13,9 @@ export function cdr<B>(p: Cons<any, B>): B {
 }
 
 export function isAtom(x: any): boolean {
-  return !isPair(x) && !isEmpty(x);
+  return !isPair(x) && !Array.isArray(x);
 }
 
 export function isPair(x: any): boolean {
   return Array.isArray(x) && x.length === 2;
-}
-
-export function isEmpty(x: any): boolean {
-  return Array.isArray(x) && x.length === 0;
 }
