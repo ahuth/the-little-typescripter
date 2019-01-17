@@ -1,13 +1,15 @@
 import { cons, car, cdr, isAtom, isEmpty } from './cons';
 
+type List = [any, any];
+
 export const getHead = car;
 export const getTail = cdr;
 
-export function list(...items: Array<any>): [any, any] {
+export function list(...items: Array<any>): List {
   return items.reduceRight((acc, item) => cons(item, acc), []);
 }
 
-export function toString(l: [any, any], acc = '('): string {
+export function toString(l: List, acc = '('): string {
   if (isEmpty(l)) { return acc + ')'; }
   if (isAtom(l)) { return String(l); }
 
@@ -18,7 +20,7 @@ export function toString(l: [any, any], acc = '('): string {
   return toString(tail, acc + toString(head) + trailing);
 }
 
-export function nth(l: [any, any], n: number): any {
+export function nth(l: List, n: number): any {
   if (n <= 0) {
     return getHead(l);
   }
