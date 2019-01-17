@@ -18,6 +18,7 @@ test('pairs', () => {
 
 test('isAtom', () => {
   expect(isAtom('atom')).toEqual(true);
+  expect(isAtom(666)).toEqual(true);
   expect(isAtom(cons(1, 2))).toEqual(false);
   expect(isAtom([])).toEqual(false);
 });
