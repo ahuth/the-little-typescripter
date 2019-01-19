@@ -1,5 +1,5 @@
 import { car, cdr, cons, isAtom, isPair } from './cons';
-import { isList, list, toString } from './list';
+import { isList, isEmpty, list, toString } from './list';
 
 test('Is it true that this is an atom: "atom"', () => {
   expect(isAtom('atom')).toEqual(true);
@@ -111,4 +111,26 @@ test('What is the cons of (a b (c)) and ()', () => {
     list('a', 'b', list('c')),
     list(),
   ))).toEqual('((a b (c)))');
+});
+
+test('What is the cons of "a" and the car of ((b) c d)', () => {
+  expect(toString(cons(
+    'a',
+    car(list(list('b'), 'c', 'd')),
+  ))).toEqual('(a b)');
+});
+
+test('What is the cons of "a" and the cdr of ((b) c d)', () => {
+  expect(toString(cons(
+    'a',
+    cdr(list(list('b'), 'c', 'd')),
+  ))).toEqual('(a c d)');
+});
+
+test('What is isEmpty of ()', () => {
+  expect(isEmpty(list())).toEqual(true);
+});
+
+test('Is isEmpty of (a b c) true or false', () => {
+  expect(isEmpty(list('a', 'b', 'c'))).toEqual(false);
 });
