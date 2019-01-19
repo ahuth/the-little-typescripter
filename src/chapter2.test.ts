@@ -40,3 +40,19 @@ test('Is it true that tea is a member of (coffee tea or milk)', () => {
 test('Is it true that poached is a member of (fried eggs and scrambled eggs)', () => {
   expect(isMember(list('fried', 'eggs', 'and', 'scrambled', 'eggs'), 'poached')).toEqual(false);
 });
+
+test('What is the value of isMember of meat and (meat gravy)', () => {
+  expect(isMember(list('meat', 'gravy'), 'meat')).toEqual(true);
+});
+
+test('What is the value of isMember of meat and (mashed potatoes and meat gravy)', () => {
+  expect(isMember(list('mashed', 'potatoes', 'and', 'meat', 'gravy'), 'meat')).toEqual(true);
+});
+
+test('What is the value of isMember of liver and (bagels and lox)', () => {
+  expect(isMember(list('bagels', 'and', 'lox'), 'liver')).toEqual(false);
+});
+
+test('What is the value of isMember of liver and ()', () => {
+  expect(isMember(list(), 'liver')).toEqual(false);
+});
