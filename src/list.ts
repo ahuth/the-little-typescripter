@@ -8,7 +8,7 @@ import {
 } from './cons';
 
 type EmptyList = [];
-type List = Cons<any, any> | EmptyList;
+export type List = Cons<any, any> | EmptyList;
 
 export function list<A, B, C, D, E, F, G, H, I, J>(a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, i: I, j: J): Cons<A, Cons<B, Cons<C, Cons<D, Cons<E, Cons<F, Cons<G, Cons<H, Cons<I, Cons<J, EmptyList>>>>>>>>>>;
 export function list<A, B, C, D, E, F, G, H, I>(a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, i: I): Cons<A, Cons<B, Cons<C, Cons<D, Cons<E, Cons<F, Cons<G, Cons<H, Cons<I, EmptyList>>>>>>>>>;
@@ -52,4 +52,10 @@ export function toString(l: List, acc = '('): string {
   const trailing = isEmpty(tail) ? '' : ' ';
 
   return toString(tail, acc + toString(head) + trailing);
+}
+
+export function every(l: List, predicate: (x: any) => boolean): boolean {
+  if (isEmpty(l)) { return true; }
+  if (!predicate(getHead(l))) { return false; }
+  return every(getTail(l), predicate);
 }
