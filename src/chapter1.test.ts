@@ -1,4 +1,5 @@
 import { car, cdr, cons, isAtom, isPair } from './cons';
+import { isEqual } from './equal';
 import { isList, isEmpty, list, toString } from './list';
 
 test('Is it true that this is an atom: "atom"', () => {
@@ -133,4 +134,48 @@ test('What is isEmpty of ()', () => {
 
 test('Is isEmpty of (a b c) true or false', () => {
   expect(isEmpty(list('a', 'b', 'c'))).toEqual(false);
+});
+
+test('Is it true of false that Harry is an atom', () => {
+  expect(isAtom('harry')).toEqual(true);
+})
+
+test('Is isAtom of (Harry had a heap of apples) true or false', () => {
+  expect(isAtom(list('Harry', 'had', 'a', 'heap', 'of', 'apples'))).toEqual(false);
+});
+
+test('Is isAtom of car of (Harry had a heap of apples) true or false', () => {
+  expect(isAtom(car(list('Harry', 'had', 'a', 'heap', 'of', 'apples')))).toEqual(true);
+});
+
+test('Is isAtom of cdr of (Harry) true or false', () => {
+  expect(isAtom(cdr(list('Harry')))).toEqual(false);
+});
+
+test('Is isAtom of the car of the cdr of (swing low sweet cherry oat)', () => {
+  expect(isAtom(car(cdr(list('swing', 'low', 'sweet', 'cherry', 'oat'))))).toEqual(true);
+});
+
+test('Is isAtom of the car of the cdr of (swing (low sweet) cherry oat)', () => {
+  expect(isAtom(car(cdr(list('swing', list('low', 'sweet'), 'cherry', 'oat'))))).toEqual(false);
+});
+
+test('Is isEqual of Harry and Harry true or false', () => {
+  expect(isEqual('Harry', 'Harry')).toEqual(true);
+});
+
+test('Is isEqual of margarine and butter true or false', () => {
+  expect(isEqual('margarine', 'butter')).toEqual(false);
+});
+
+test('Is isEqual of () and (strawberry) true or false', () => {
+  expect(isEqual(list(), list('stawberry'))).toEqual(false);
+});
+
+test('Is isEqual of (strawberry) and (strawberry) true or false', () => {
+  expect(isEqual(list('strawberry'), list('strawberry'))).toEqual(true);
+});
+
+test('is isEqual of 6 and 7 true or false', () => {
+  expect(isEqual(6, 7)).toEqual(false);
 });
