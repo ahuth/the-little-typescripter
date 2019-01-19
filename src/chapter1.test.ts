@@ -86,7 +86,10 @@ test('What is the cdr of the cdr of ((b) (x y) ((c)))', () => {
 });
 
 test('What is the cons of peanut and (butter and jelly)', () => {
-  expect(toString(cons('peanut', list('butter', 'and', 'jelly')))).toEqual('(peanut butter and jelly)');
+  expect(toString(cons(
+    'peanut',
+    list('butter', 'and', 'jelly'),
+  ))).toEqual('(peanut butter and jelly)');
 });
 
 test('What is the cons of (banana and) and (peanut butter and jelly)', () => {
