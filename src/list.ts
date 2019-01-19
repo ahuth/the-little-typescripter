@@ -7,7 +7,7 @@ import {
   Cons,
 } from './cons';
 
-type EmptyList = [];
+type EmptyList = null;
 export type List = Cons<any, any> | EmptyList;
 
 export function list<A, B, C, D, E, F, G, H, I, J>(a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, i: I, j: J): Cons<A, Cons<B, Cons<C, Cons<D, Cons<E, Cons<F, Cons<G, Cons<H, Cons<I, Cons<J, EmptyList>>>>>>>>>>;
@@ -22,7 +22,7 @@ export function list<A, B>(a: A, b: B): Cons<A, Cons<B, EmptyList>>;
 export function list<A>(a: A): Cons<A, EmptyList>;
 export function list(): EmptyList;
 export function list(...items: Array<any>) {
-  return items.reduceRight((acc, item) => cons(item, acc), []);
+  return items.reduceRight((acc, item) => cons(item, acc), null);
 }
 
 export function isList(x: any): x is List {
@@ -30,7 +30,7 @@ export function isList(x: any): x is List {
 }
 
 export function isEmpty(x: List): x is EmptyList {
-  return Array.isArray(x) && x.length === 0;
+  return x === null;
 }
 
 export function getHead(x: List): any {
@@ -39,7 +39,7 @@ export function getHead(x: List): any {
 }
 
 export function getTail(x: List): List {
-  if (isEmpty(x)) { return []; }
+  if (isEmpty(x)) { return x; }
   return cdr(x);
 }
 
