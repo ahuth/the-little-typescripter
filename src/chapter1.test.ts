@@ -1,4 +1,4 @@
-import { car, isAtom, isPair } from './cons';
+import { car, cdr, isAtom, isPair } from './cons';
 import { isList, list, toString } from './list';
 
 test('Is it true that this is an atom: "atom"', () => {
@@ -55,4 +55,24 @@ test('What is the car of (a b c)', () => {
 
 test('What is the car of ((a b c) x y z)', () => {
   expect(toString(car(list(list('a', 'b', 'c'), 'x', 'y', 'z')))).toEqual('(a b c)');
+});
+
+test('What is the car of (((hotdogs) (and) (pickle)) relish)', () => {
+  expect(toString(car(list(list(list('hotdogs')), list('and'), list('pickle'), 'relish')))).toEqual('((hotdogs))');
+});
+
+test('What is the car of the car of (((hotdogs)) (and))', () => {
+  expect(toString(car(car(list(list(list('hotdogs')), list('and')))))).toEqual('(hotdogs)');
+});
+
+test('What is the cdr of (a b c)', () => {
+  expect(toString(cdr(list('a', 'b', 'c')))).toEqual('(b c)');
+});
+
+test('What is the cdr of ((a b c) x y z)', () => {
+  expect(toString(cdr(list(list('a', 'b', 'c'), 'x', 'y', 'z')))).toEqual('(x y z)');
+});
+
+test('What is the cdr of (hamburger)', () => {
+  expect(toString(cdr(list('hamburger')))).toEqual('()');
 });
