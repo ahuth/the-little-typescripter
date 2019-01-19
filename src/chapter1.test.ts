@@ -1,4 +1,4 @@
-import { car, cdr, isAtom, isPair } from './cons';
+import { car, cdr, cons, isAtom, isPair } from './cons';
 import { isList, list, toString } from './list';
 
 test('Is it true that this is an atom: "atom"', () => {
@@ -75,4 +75,37 @@ test('What is the cdr of ((a b c) x y z)', () => {
 
 test('What is the cdr of (hamburger)', () => {
   expect(toString(cdr(list('hamburger')))).toEqual('()');
+});
+
+test('What is the car of the cdr of ((b) (x y) ((c)))', () => {
+  expect(toString(car(cdr(list(list('b'), list('x', 'y'), list(list('c'))))))).toEqual('(x y)');
+});
+
+test('What is the cdr of the cdr of ((b) (x y) ((c)))', () => {
+  expect(toString(cdr(cdr(list(list('b'), list('x', 'y'), list(list('c'))))))).toEqual('(((c)))');
+});
+
+test('What is the cons of peanut and (butter and jelly)', () => {
+  expect(toString(cons('peanut', list('butter', 'and', 'jelly')))).toEqual('(peanut butter and jelly)');
+});
+
+test('What is the cons of (banana and) and (peanut butter and jelly)', () => {
+  expect(toString(cons(
+    list('banana', 'and'),
+    list('peanut', 'butter', 'and', 'jelly'),
+  ))).toEqual('((banana and) peanut butter and jelly)');
+});
+
+test('What is the cons of ((help) this) and (is very ((hard) to learn))', () => {
+  expect(toString(cons(
+    list(list('help'), 'this'),
+    list('is', 'very', list(list('hard'), 'to', 'learn')),
+  ))).toEqual('(((help) this) is very ((hard) to learn))');
+});
+
+test('What is the cons of (a b (c)) and ()', () => {
+  expect(toString(cons(
+    list('a', 'b', list('c')),
+    list(),
+  ))).toEqual('((a b (c)))');
 });
