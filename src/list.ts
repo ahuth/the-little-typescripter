@@ -3,6 +3,7 @@ import {
   car,
   cdr,
   isAtom,
+  isPair,
   Cons,
 } from './cons';
 
@@ -22,6 +23,10 @@ export function list<A>(a: A): Cons<A, EmptyList>;
 export function list(): EmptyList;
 export function list(...items: Array<any>) {
   return items.reduceRight((acc, item) => cons(item, acc), []);
+}
+
+export function isList(x: any): x is List {
+  return isPair(x) || isEmpty(x);
 }
 
 export function isEmpty(x: List): x is EmptyList {
@@ -47,11 +52,4 @@ export function toString(l: List, acc = '('): string {
   const trailing = isEmpty(tail) ? '' : ' ';
 
   return toString(tail, acc + toString(head) + trailing);
-}
-
-export function nth(l: List, n: number): any {
-  if (n <= 0) {
-    return getHead(l);
-  }
-  return nth(getTail(l), n - 1);
 }
