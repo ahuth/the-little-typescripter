@@ -179,3 +179,25 @@ test('Is isEqual of (strawberry) and (strawberry) true or false', () => {
 test('is isEqual of 6 and 7 true or false', () => {
   expect(isEqual(6, 7)).toEqual(false);
 });
+
+test('is isEqual of car of (Mary had a little lamb chop) and Mary true or false', () => {
+  expect(isEqual(
+    car(list('Mary', 'had', 'a', 'little', 'lamb', 'chop')),
+    'Mary',
+  )).toEqual(true);
+});
+
+test('is isEqual of the cdr of (soured milk) and milk true or false', () => {
+  expect(isEqual(
+    cdr(list('soured', 'milk')),
+    'milk',
+  )).toEqual(false);
+});
+
+test('is isEqual of the car of L and the car of the cdr of L true or false, where L is (beans beans we need jelly beans)', () => {
+  const L = list('beans', 'beans', 'we', 'need', 'jelly', 'beans');
+  expect(isEqual(
+    car(L),
+    car(cdr(L)),
+  )).toEqual(true);
+});
