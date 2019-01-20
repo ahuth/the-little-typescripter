@@ -59,3 +59,13 @@ export function every(l: List, predicate: (x: any) => boolean): boolean {
   if (!predicate(getHead(l))) { return false; }
   return every(getTail(l), predicate);
 }
+
+export function removeFirstOccurance(l: List, member: any): List {
+  if (isEmpty(l)) { return l; }
+  if (getHead(l) === member) { return getTail(l); }
+
+  return cons(
+    car(l),
+    removeFirstOccurance(getTail(l), member),
+  );
+}
