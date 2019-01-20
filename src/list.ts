@@ -69,3 +69,12 @@ export function removeFirstOccurance(l: List, member: any): List {
     removeFirstOccurance(getTail(l), member),
   );
 }
+
+export function firsts(l: List): List {
+  if (isEmpty(l)) { return l; }
+
+  return cons(
+    getHead(getHead(l) as List),
+    firsts(getTail(l)),
+  );
+}
