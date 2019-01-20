@@ -65,7 +65,7 @@ export function removeFirstOccurance(l: List, member: any): List {
   if (getHead(l) === member) { return getTail(l); }
 
   return cons(
-    car(l),
+    getHead(l),
     removeFirstOccurance(getTail(l), member),
   );
 }
