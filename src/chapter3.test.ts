@@ -1,4 +1,11 @@
-import { firsts, list, removeFirstOccurance, toString } from './list';
+import {
+  firsts,
+  insertRight,
+  list,
+  removeAllOccurances,
+  removeFirstOccurance,
+  toString
+} from './list';
 
 test('What is removeFirstOccurance of mint and (lamb chops and mint jelly)', () => {
   const l = list('lamb', 'chops', 'and', 'mint', 'jelly');
@@ -46,4 +53,24 @@ test('What is firsts of (((five plums) four) (eleven green oranges) ((no) more))
     list(list('no'), 'more'),
   );
   expect(toString(firsts(l))).toEqual('((five plums) eleven (no))');
+});
+
+test('What is insertRight of (ice cream with fudge for desert) and topping and fudge', () => {
+  const l = list('ice', 'cream', 'with', 'fudge', 'for', 'dessert');
+  expect(toString(insertRight(l, 'topping', 'fudge'))).toEqual('(ice cream with fudge topping for dessert)');
+});
+
+test('What is insertRight of (tacos tameles and salsa) and jalepeño and and', () => {
+  const l = list('tacos', 'tamales', 'and', 'salsa');
+  expect(toString(insertRight(l, 'jalepeño', 'and'))).toEqual('(tacos tamales and jalepeño salsa)');
+});
+
+test('What is insertRight of (a b c d f g d h) and e and d', () => {
+  const l = list('a', 'b', 'c', 'd', 'f', 'g', 'd', 'h');
+  expect(toString(insertRight(l, 'e', 'd'))).toEqual('(a b c d e f g d h)');
+});
+
+test('What is removeAllOccurances of cup and (Coffee cup tea cup and hick cup)', () => {
+  const l = list('Coffee', 'cup', 'tea', 'cup', 'and', 'hick', 'cup');
+  expect(toString(removeAllOccurances(l, 'cup'))).toEqual('(Coffee tea and hick)');
 });

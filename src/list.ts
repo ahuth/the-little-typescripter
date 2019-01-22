@@ -78,3 +78,24 @@ export function firsts(l: List): List {
     firsts(getTail(l)),
   );
 }
+
+export function insertRight(l: List, newMember: any, oldMember: any): List {
+  if (isEmpty(l)) { return l; }
+
+  const head = getHead(l);
+  const tail = getTail(l);
+
+  if (head === oldMember) { return cons(head, cons(newMember, tail)); }
+
+  return cons(head, insertRight(tail, newMember, oldMember));
+}
+
+export function removeAllOccurances(l: List, member: any): List {
+  if (isEmpty(l)) { return l; }
+  if (getHead(l) === member) { return removeAllOccurances(getTail(l), member); }
+
+  return cons(
+    getHead(l),
+    removeAllOccurances(getTail(l), member),
+  );
+}
