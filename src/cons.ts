@@ -16,6 +16,6 @@ export function isAtom(x: any): boolean {
   return typeof x === 'string' || typeof x === 'number' || typeof x === 'boolean';
 }
 
-export function isPair(x: any): boolean {
-  return Array.isArray(x);
+export function isPair(x: any): x is Cons<unknown, unknown> {
+  return Array.isArray(x) && x.length === 2;
 }
