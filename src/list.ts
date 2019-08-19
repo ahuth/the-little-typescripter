@@ -99,3 +99,12 @@ export function removeAllOccurances(l: List, member: any): List {
     removeAllOccurances(getTail(l), member),
   );
 }
+
+export function reduce<T>(l: List, callback: (acc: T, item: any) => T, initial: T): T {
+  if (isEmpty(l)) { return initial; }
+
+  const head = getHead(l);
+  const tail = getTail(l);
+
+  return reduce(tail, callback, callback(initial, head));
+}

@@ -1,9 +1,14 @@
 import { add1, add2, sub1, sub2, isZero } from './numbers';
-import { every, list, List } from './list';
+import { every, list, reduce, List } from './list';
 import { isAtom } from './cons';
 
 function isNumberList(l: List): boolean {
   return every(l, x => typeof x === 'number');
+}
+
+function addNumberList(l: List): number {
+  if (!isNumberList(l)) { throw new Error('Not a number list!') }
+  return reduce(l, (acc, n) => acc + n, 0);
 }
 
 test('Is 14 an atom', () => {
@@ -57,4 +62,14 @@ test('Is (3 (7 4) 13 9) a number list', () => {
 test('Is () a number list', () => {
   const l = list();
   expect(isNumberList(l)).toEqual(true);
+});
+
+test('What is addNumberList of (3 5 2 8)', () => {
+  const l = list(3, 5, 2, 8);
+  expect(addNumberList(l)).toEqual(18);
+});
+
+test('What is addNumberList of (15 6 7 12 3)', () => {
+  const l = list(15, 6, 7, 12, 3);
+  expect(addNumberList(l)).toEqual(43);
 });
