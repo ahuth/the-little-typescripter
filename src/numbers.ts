@@ -19,3 +19,8 @@ export function sub2(x: number, y: number): number {
   if (isZero(y)) { return x; }
   return sub2(sub1(x), sub1(y));
 }
+
+export function mul2(x: number, y: number): number {
+  if (isZero(y)) { return 0; }
+  return add2(x, mul2(x, sub1(y)));
+}

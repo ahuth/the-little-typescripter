@@ -1,4 +1,4 @@
-import { add1, add2, sub1, sub2, isZero } from './numbers';
+import { add1, add2, sub1, sub2, mul2, isZero } from './numbers';
 import { every, getHead, getTail, isEmpty, list, List } from './list';
 import { isAtom } from './cons';
 
@@ -72,4 +72,12 @@ test('What is addNumberList of (3 5 2 8)', () => {
 test('What is addNumberList of (15 6 7 12 3)', () => {
   const l = list(15, 6, 7, 12, 3);
   expect(addNumberList(l)).toEqual(43);
+});
+
+test('What is mul2 of 5 and 3', () => {
+  expect(mul2(5, 3)).toEqual(15);
+});
+
+test('What is mul2 of 13 and 4', () => {
+  expect(mul2(13, 4)).toEqual(52);
 });
