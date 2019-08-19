@@ -1,5 +1,5 @@
 import { add1, add2, sub1, sub2, isZero } from './numbers';
-import { every, list, reduce, List } from './list';
+import { every, getHead, getTail, isEmpty, list, List } from './list';
 import { isAtom } from './cons';
 
 function isNumberList(l: List): boolean {
@@ -7,8 +7,8 @@ function isNumberList(l: List): boolean {
 }
 
 function addNumberList(l: List): number {
-  if (!isNumberList(l)) { throw new Error('Not a number list!') }
-  return reduce(l, (acc, n) => acc + n, 0);
+  if (isEmpty(l)) { return 0; }
+  return add2(getHead(l), addNumberList(getTail(l)));
 }
 
 test('Is 14 an atom', () => {
