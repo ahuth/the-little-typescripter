@@ -1,4 +1,4 @@
-import { add1, add2, sub1, sub2, mul2, isEqual, isGreaterThan, isLessThan, isZero } from './numbers';
+import { add1, add2, exp2, sub1, sub2, mul2, isEqual, isGreaterThan, isLessThan, isZero } from './numbers';
 import { cons, isAtom } from './cons';
 import { every, getHead, getTail, isEmpty, list, toString, List } from './list';
 
@@ -150,4 +150,16 @@ test('What is isEqual of 2 and 5', () => {
 
 test('What is isEqual of 3 and 2', () => {
   expect(isEqual(3, 2)).toEqual(false);
+});
+
+test('What is exp2 of 1 and 1', () => {
+  expect(exp2(1, 1)).toEqual(1);
+});
+
+test('What is exp2 of 2 and 3', () => {
+  expect(exp2(2, 3)).toEqual(8);
+});
+
+test('What is exp2 of 5 and 3', () => {
+  expect(exp2(5, 3)).toEqual(125);
 });

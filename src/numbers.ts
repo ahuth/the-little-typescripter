@@ -42,3 +42,8 @@ export function isEqual(x: number, y: number): boolean {
   if (isLessThan(x, y)) { return false; }
   return true;
 }
+
+export function exp2(x: number, y: number): number {
+  if (isZero(y)) { return 1; }
+  return mul2(x, exp2(x, sub1(y)));
+}
