@@ -36,3 +36,9 @@ export function isLessThan(x: number, y: number): boolean {
   if (isZero(x)) { return true; }
   return isLessThan(sub1(x), sub1(y));
 }
+
+export function isEqual(x: number, y: number): boolean {
+  if (isGreaterThan(x, y)) { return false; }
+  if (isLessThan(x, y)) { return false; }
+  return true;
+}
