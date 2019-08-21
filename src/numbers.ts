@@ -24,3 +24,15 @@ export function mul2(x: number, y: number): number {
   if (isZero(y)) { return 0; }
   return add2(x, mul2(x, sub1(y)));
 }
+
+export function isGreaterThan(x: number, y: number): boolean {
+  if (isZero(x)) { return false; }
+  if (isZero(y)) { return true; }
+  return isGreaterThan(sub1(x), sub1(y));
+}
+
+export function isLessThan(x: number, y: number): boolean {
+  if (isZero(y)) { return false; }
+  if (isZero(x)) { return true; }
+  return isLessThan(sub1(x), sub1(y));
+}

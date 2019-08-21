@@ -1,4 +1,4 @@
-import { add1, add2, sub1, sub2, mul2, isZero } from './numbers';
+import { add1, add2, sub1, sub2, mul2, isGreaterThan, isLessThan, isZero } from './numbers';
 import { cons, isAtom } from './cons';
 import { every, getHead, getTail, isEmpty, list, toString, List } from './list';
 
@@ -114,4 +114,28 @@ test('What is addNumberLists of (3 7 8 1) and (4 6)', () => {
   const a = list(3, 7, 8, 1);
   const b = list(4, 6);
   expect(toString(addNumberLists(a, b))).toEqual('(7 13 8 1)');
+});
+
+test('What is isGreaterThan of 12 and 133', () => {
+  expect(isGreaterThan(12, 133)).toEqual(false);
+});
+
+test('What is isGreaterThan of 12 and 133', () => {
+  expect(isGreaterThan(120, 11)).toEqual(true);
+});
+
+test('What is isGreaterThan of 3 and 3', () => {
+  expect(isGreaterThan(3, 3)).toEqual(false);
+});
+
+test('What is isLessThan of 4 and 6', () => {
+  expect(isLessThan(4, 6)).toEqual(true);
+});
+
+test('What is isLessThan of 8 and 3', () => {
+  expect(isLessThan(8, 3)).toEqual(false);
+});
+
+test('What is isLessThan of 6 and 6', () => {
+  expect(isLessThan(6, 6)).toEqual(false);
 });
