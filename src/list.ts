@@ -6,6 +6,7 @@ import {
   isPair,
   Cons,
 } from './cons';
+import { add1 } from './numbers';
 
 type EmptyList = null;
 export type List = Cons<any, any> | EmptyList;
@@ -98,4 +99,9 @@ export function removeAllOccurances(l: List, member: any): List {
     getHead(l),
     removeAllOccurances(getTail(l), member),
   );
+}
+
+export function length(l: List): number {
+  if (isEmpty(l)) { return 0; }
+  return add1(length(getTail(l)));
 }
