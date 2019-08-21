@@ -47,3 +47,8 @@ export function exp2(x: number, y: number): number {
   if (isZero(y)) { return 1; }
   return mul2(x, exp2(x, sub1(y)));
 }
+
+export function div2(x: number, y: number): number {
+  if (isLessThan(x, y)) { return 0; }
+  return add1(div2(sub2(x, y), y));
+}
