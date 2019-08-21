@@ -1,6 +1,6 @@
 import { add1, add2, div2, exp2, sub1, sub2, mul2, isEqual, isGreaterThan, isLessThan, isZero } from './numbers';
 import { cons, isAtom } from './cons';
-import { every, getHead, getTail, isEmpty, length, list, toString, List } from './list';
+import { every, getHead, getTail, isEmpty, length, list, pick, toString, List } from './list';
 
 function isNumberList(l: List): boolean {
   return every(l, x => typeof x === 'number');
@@ -176,4 +176,9 @@ test('What is length of (hotdogs with mustard sauerkraut and pickles)', () => {
 test('What is length of (ham and cheese on rye)', () => {
   const l = list('ham', 'and', 'cheese', 'on', 'rye');
   expect(length(l)).toEqual(5);
+});
+
+test('What is pick of (lasagna spaghetti ravioli macaroni meatball) and 3', () => {
+  const l = list('lasagna', 'spaghetti', 'ravioli', 'macaroni', 'meatball');
+  expect(pick(l, 3)).toEqual('macaroni');
 });

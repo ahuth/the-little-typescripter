@@ -6,7 +6,7 @@ import {
   isPair,
   Cons,
 } from './cons';
-import { add1 } from './numbers';
+import { add1, sub1, isZero } from './numbers';
 
 type EmptyList = null;
 export type List = Cons<any, any> | EmptyList;
@@ -104,4 +104,9 @@ export function removeAllOccurances(l: List, member: any): List {
 export function length(l: List): number {
   if (isEmpty(l)) { return 0; }
   return add1(length(getTail(l)));
+}
+
+export function pick(l: List, n: number): any {
+  if (isZero(n)) { return getHead(l); }
+  return pick(getTail(l), sub1(n));
 }
