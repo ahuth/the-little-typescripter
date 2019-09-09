@@ -10,6 +10,7 @@ import { add1, sub1, isZero } from './numbers';
 
 type EmptyList = null;
 export type List = Cons<any, any> | EmptyList;
+// export type List<A> = Cons<A, List<A>> | EmptyList;
 
 export function list<A, B, C, D, E, F, G, H, I, J>(a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, i: I, j: J): Cons<A, Cons<B, Cons<C, Cons<D, Cons<E, Cons<F, Cons<G, Cons<H, Cons<I, Cons<J, EmptyList>>>>>>>>>>;
 export function list<A, B, C, D, E, F, G, H, I>(a: A, b: B, c: C, d: D, e: E, f: F, g: G, h: H, i: I): Cons<A, Cons<B, Cons<C, Cons<D, Cons<E, Cons<F, Cons<G, Cons<H, Cons<I, EmptyList>>>>>>>>>;
