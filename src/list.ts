@@ -6,7 +6,7 @@ import {
   isPair,
   Cons,
 } from './cons';
-import { add1, sub1, isZero } from './numbers';
+import { add1, add2, sub1, isZero } from './numbers';
 
 type EmptyList = null;
 export type List = Cons<any, any> | EmptyList;
@@ -132,4 +132,21 @@ export function length(l: List): number {
 export function pick(l: List, n: number): any {
   if (isZero(n)) { return getHead(l); }
   return pick(getTail(l), sub1(n));
+}
+
+export function countOccurances(l: List, member: any): number {
+  if (isEmpty(l)) { return 0; }
+
+  const head = getHead(l);
+  const tail = getTail(l);
+
+  if (isList(head)) {
+    return add2(countOccurances(head, member), countOccurances(tail, member));
+  }
+
+  if (head === member) {
+    return add1(countOccurances(tail, member));
+  }
+
+  return countOccurances(tail, member);
 }
