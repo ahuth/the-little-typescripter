@@ -93,12 +93,25 @@ export function insertRight(l: List, newMember: any, oldMember: any): List {
 }
 
 export function removeMember(l: List, member: any): List {
-  if (isEmpty(l)) { return l; }
-  if (getHead(l) === member) { return removeMember(getTail(l), member); }
+  if (isEmpty(l)) { return null; }
+
+  const head = getHead(l);
+  const tail = getTail(l);
+
+  if (isList(head)) {
+    return cons(
+      removeMember(head, member),
+      removeMember(tail, member),
+    );
+  }
+
+  if (head === member) {
+    return removeMember(tail, member);
+  }
 
   return cons(
-    getHead(l),
-    removeMember(getTail(l), member),
+    head,
+    removeMember(tail, member),
   );
 }
 
