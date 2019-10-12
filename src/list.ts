@@ -92,13 +92,13 @@ export function insertRight(l: List, newMember: any, oldMember: any): List {
   return cons(head, insertRight(tail, newMember, oldMember));
 }
 
-export function removeAllOccurances(l: List, member: any): List {
+export function removeMember(l: List, member: any): List {
   if (isEmpty(l)) { return l; }
-  if (getHead(l) === member) { return removeAllOccurances(getTail(l), member); }
+  if (getHead(l) === member) { return removeMember(getTail(l), member); }
 
   return cons(
     getHead(l),
-    removeAllOccurances(getTail(l), member),
+    removeMember(getTail(l), member),
   );
 }
 

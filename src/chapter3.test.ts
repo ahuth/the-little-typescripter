@@ -2,7 +2,7 @@ import {
   firsts,
   insertRight,
   list,
-  removeAllOccurances,
+  removeMember,
   removeFirstOccurance,
   toString
 } from './list';
@@ -70,7 +70,7 @@ test('What is insertRight of (a b c d f g d h) and e and d', () => {
   expect(toString(insertRight(l, 'e', 'd'))).toEqual('(a b c d e f g d h)');
 });
 
-test('What is removeAllOccurances of cup and (Coffee cup tea cup and hick cup)', () => {
+test('What is removeMember of cup and (Coffee cup tea cup and hick cup)', () => {
   const l = list('Coffee', 'cup', 'tea', 'cup', 'and', 'hick', 'cup');
-  expect(toString(removeAllOccurances(l, 'cup'))).toEqual('(Coffee tea and hick)');
+  expect(toString(removeMember(l, 'cup'))).toEqual('(Coffee tea and hick)');
 });
