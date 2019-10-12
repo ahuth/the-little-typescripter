@@ -82,12 +82,21 @@ export function firsts(l: List): List {
 }
 
 export function insertRight(l: List, newMember: any, oldMember: any): List {
-  if (isEmpty(l)) { return l; }
+  if (isEmpty(l)) { return null; }
 
   const head = getHead(l);
   const tail = getTail(l);
 
-  if (head === oldMember) { return cons(head, cons(newMember, tail)); }
+  if (isList(head)) {
+    return cons(
+      insertRight(head, newMember, oldMember),
+      insertRight(tail, newMember, oldMember),
+    );
+  }
+
+  if (head === oldMember) {
+    return cons(head, cons(newMember, tail));
+  }
 
   return cons(head, insertRight(tail, newMember, oldMember));
 }
