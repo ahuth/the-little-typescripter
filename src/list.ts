@@ -150,3 +150,23 @@ export function countOccurances(l: List, member: any): number {
 
   return countOccurances(tail, member);
 }
+
+export function substitute(l: List, newMember: any, oldMember: any): List {
+  if (isEmpty(l)) { return null; }
+
+  const head = getHead(l);
+  const tail = getTail(l);
+
+  if (isList(head)) {
+    return cons(
+      substitute(head, newMember, oldMember),
+      substitute(tail, newMember, oldMember),
+    );
+  }
+
+  if (head === oldMember) {
+    return cons(newMember, substitute(tail, newMember, oldMember));
+  }
+
+  return cons(head, substitute(tail, newMember, oldMember));
+}

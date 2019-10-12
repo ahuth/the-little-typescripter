@@ -1,4 +1,4 @@
-import { countOccurances, list, insertRight, removeMember, toString } from './list';
+import { countOccurances, list, insertRight, removeMember, substitute, toString } from './list';
 
 test('What is removeMember of cup and ((coffee) cup ((tea) cup) (and (hick)) cup)', () => {
   const l = list(
@@ -34,4 +34,15 @@ test('What is countOccurances of banana and ((banana) (split ((((banana ice))) (
     list('banana', 'brandy'),
   );
   expect(countOccurances(l, 'banana')).toEqual(5);
+});
+
+test('What is substitute of ((banana) (split ((((banana ice))) (cream (banana)) sherbet)) (banana) (bread) (banana brandy)) where new is orange and old is banana', () => {
+  const l = list(
+    list('banana'),
+    list('split', list(list(list(list('banana', 'ice'))), list('cream', list('banana')), 'sherbet')),
+    list('banana'),
+    list('bread'),
+    list('banana', 'brandy'),
+  );
+  expect(toString(substitute(l, 'orange', 'banana'))).toEqual('((orange) (split ((((orange ice))) (cream (orange)) sherbet)) (orange) (bread) (orange brandy))');
 });
