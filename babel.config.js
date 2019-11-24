@@ -3,8 +3,9 @@ module.exports = function (api) {
 
   return {
     presets: [
+      '@babel/preset-typescript',
       [
-        "@babel/preset-env",
+        '@babel/preset-env',
         {
           targets: {
             node: true,
